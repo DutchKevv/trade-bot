@@ -1,0 +1,71 @@
+@import '../base/variables';
+
+.block--wrapper {
+  background: white;
+  padding: $spacing * 2;
+}
+
+.block {
+    margin-bottom: $spacing * 2;
+    background-color: white;
+    border: 1px solid $color-border;
+    box-shadow: 0 1px 1px -2px $color-box-shadow, 0 2px 2px 0 $color-box-shadow, 0 1px 5px 0 $color-box-shadow;
+
+    > header {
+        display: flex;
+        color: white;
+        background-color: $color-primary;
+        padding: $spacing $spacing $spacing ($spacing * 2);
+
+        h4 {
+            font-family: $font-bold;
+            line-height: 32px;
+            font-size: 16px;
+            color: white;
+            user-select: none;
+        }
+
+        mat-icon {
+            font-size: 18px;
+            line-height: 24px;
+            color: white;
+
+            &:first-child {
+                padding: 4px;
+                margin-right: $spacing;
+            }
+
+            &:last-child {
+            // &:last-of-type {
+            // &:last-of-type:not(:first-of-type) {
+                margin-left: auto;
+                cursor: pointer;
+                font-size: 30px;
+                line-height: 32px;
+            }
+        }
+    }
+
+    > main {
+        padding: $spacing ($spacing * 3) ($spacing * 2) ($spacing * 3)
+    }
+}
+
+.block--secondary {
+
+    > header {
+        background-color: #fff;
+
+        mat-icon, h4 {
+            color: $color-primary;
+        }
+    }
+}
+
+.block--no-shadow {
+    box-shadow: none;
+}
+
+.block--no-border {
+    border: none;
+}

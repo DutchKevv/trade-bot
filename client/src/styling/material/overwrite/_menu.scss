@@ -1,0 +1,12 @@
+@import '../../../styling/base/variables';
+
+.mat-menu-panel {
+    border: 2px solid $color-secondary;
+    min-height: auto !important;
+}
+
+button.mat-menu-item {
+    line-height: 36px;
+    height: 36px;
+}
+

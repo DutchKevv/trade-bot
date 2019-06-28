@@ -1,0 +1,133 @@
+@import '../../base/variables';
+
+.mat-caption {
+    margin-bottom: 20px;
+}
+
+form > mat-error {
+    margin-bottom: 20px;
+}
+
+/************************* FORM FIELD *************************/
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+    line-height: normal;
+}
+
+mat-error.mat-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 15px;
+    color: $color-danger;
+    font-family: $font-bold;
+}
+
+mat-input-container,
+mat-select {
+    width: 100%;
+}
+
+.mat-form-field-label-wrapper .mat-form-field-label {
+    font-size: 14px;
+}
+
+mat-form-field.mat-form-field-no-border {
+    margin-bottom: 0 !important;
+    
+    .mat-form-field-infix {
+        border-top: 0 !important;
+    }
+}
+
+/************************* RADIO *************************/
+mat-radio-group {
+    padding: 20px;
+
+    .mat-radio-button ~ .mat-radio-button {
+        margin-left: 16px;
+    }    
+}
+
+mat-radio-button label,
+mat-checkbox label {
+    font-weight: normal;
+}
+
+.mat-radio-label-content {
+    font-size: 14px;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $color-primary;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $color-primary;
+}
+
+/************************* CHECKBOX *************************/
+mat-checkbox {
+    font-size: 14px;
+    font-weight: normal;
+    font-family: $font-light;
+
+    .mat-checkbox-label {
+      color: rgba(0, 0, 0, 0.54);
+    }
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background: $color-table-row-active;
+}
+
+/************************* SELECT *************************/
+mat-select .mat-select-trigger {
+    font-size: 14px;
+}
+
+
+.mat-select:focus:not(.mat-select-disabled).mat-warn .mat-select-trigger,
+.mat-select:focus:not(.mat-select-disabled).mat-warn .mat-select-arrow,
+.mat-select-invalid .mat-select-trigger,
+.mat-select-invalid .mat-select-arrow {
+    color: #d76715;
+}
+
+.mat-input-container {
+    line-height: normal;
+}
+
+.mat-form-field-invalid .mat-form-field-placeholder {
+    color: #d76715;
+}
+
+.mat-select:focus:not(.mat-select-disabled).mat-warn .mat-select-underline,
+.mat-select-invalid .mat-select-underline {
+    background-color: #d76715;
+}
+
+.mat-form-field-invalid .mat-form-field-ripple {
+    background-color: #d76715;
+}
+
+// Restyle mat-autocomplete
+.mat-autocomplete-panel.mat-autocomplete-visible {
+    width: 250px !important;
+}
+
+.mat-form-field-disabled {
+    cursor: not-allowed;
+
+    input {
+        color: rgba(0, 0, 0, 0.38);
+        cursor: not-allowed;
+    }
+
+    select {
+        cursor: not-allowed;
+    }
+}

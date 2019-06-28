@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+html, body {
+    margin: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, p {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-spacing:0; /* Removes the cell spacing via CSS */
+    border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
+
+    th, td {
+        text-align: left;
+        padding: 4px 0px;
+    }
+
+    td {
+        border-top: 1px solid #c5c5c5;
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

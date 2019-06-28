@@ -1,0 +1,9 @@
+<div class="notification notification-type-{{options.type}}" cdkPortalHost @dfg>
+  <mat-icon *ngIf="options.type === 'success'">thumb_up</mat-icon>
+  <mat-icon *ngIf="options.type === 'error'">error_outline</mat-icon>
+  <mat-icon *ngIf="options.type === 'warning'">warning</mat-icon>
+  <mat-icon *ngIf="options.type === 'info'">info</mat-icon>
+  <p [innerHtml]="options.message"></p>
+
+  <a *ngIf="options.type === 'error'" (click)="snackBarRef.dismiss()">sluit</a>
+</div>

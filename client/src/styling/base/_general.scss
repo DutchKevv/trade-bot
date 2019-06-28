@@ -1,0 +1,39 @@
+@import './variables';
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+  background-color: $color-background;
+  font-family: $font-regular,Helvetica,Arial,sans-serif;
+}
+
+hr {
+  height: 1px;
+  border: 0px;
+  margin: 0px;
+}
+
+a {
+  cursor: pointer;
+  color: $color-font-link;
+  text-decoration: none;
+
+  &.link--edit {
+    color: $color-font-link-editable;
+
+    &:hover {
+      color: $color-font-link-editable-hover;
+
+      &::after {
+        font-family: 'Material Icons';
+        content: "create";
+        color: $color-font-link-editable-hover;
+        padding-left: 4px;
+      }
+    }
+  }
+}

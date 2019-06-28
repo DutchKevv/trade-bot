@@ -1,0 +1,15 @@
+@import '../../base/variables';
+
+.mat-progress-spinner,
+.mat-spinner {
+    margin: 0 auto;
+
+    circle {
+        stroke: $color-secondary;
+    }
+}
+
+button .mat-progress-spinner, button .mat-spinner {
+    display: inline-block;
+    margin-right: 15px;
+}

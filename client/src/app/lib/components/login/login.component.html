@@ -1,0 +1,20 @@
+<ng-template #dialog>
+  <form id="loginForm" (submit)="login()" [formGroup]=form data-test="account">
+    <p class="mat-caption"></p>
+    <mat-form-field>
+      <input #input matInput type="email" formControlName=email autofocus
+        required placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input #input matInput type="password" formControlName=password
+        required placeholder="Password">
+    </mat-form-field>
+  </form>
+</ng-template>
+
+<ng-template #modalFooter>
+  <mat-error *ngIf="error$ | async as error"><mat-icon>error_outline</mat-icon>{{error}}</mat-error>
+  <button mat-button mat-raised-button color="primary" [disabled]="(busy$ | async) || !form.valid" type="submit" form="loginForm" (click)="login()">
+    <mat-spinner *ngIf="busy$ | async" [diameter]=20></mat-spinner>Inloggen
+  </button>
+</ng-template>

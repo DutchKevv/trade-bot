@@ -1,0 +1,27 @@
+@import '../base/variables';
+
+.list {
+    display: flex;
+    flex-flow: wrap;
+    height: 100%;
+    border-right: 1px solid $border-color;
+    padding-left: 26px;
+    padding-right: 12px;
+
+    &:last-child {
+        margin-left: auto;
+        border-right: 0;
+    }
+
+    dt, dd {
+        font-family: $font-regular;
+        font-size: 14px;
+        margin: 4px 0;
+        width: 50%;
+    }
+
+    dd {
+        overflow-wrap: break-word;
+        font-family: $font-light;
+    }
+}

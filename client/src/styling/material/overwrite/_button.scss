@@ -1,0 +1,25 @@
+button mat-spinner {
+    margin-bottom: 4px !important;
+  }
+  
+  mat-error.mat-error {
+    margin-right: auto;
+    line-height: 20px;
+    display: flex;
+  
+    mat-icon.mat-icon {
+        color: red;
+        font-size: 24px;
+        line-height: 22px;
+        margin-right: 12px;
+        width: 20px;
+    }
+}
+
+.mat-button .mat-button-wrapper > span {
+    vertical-align: baseline;
+}
+
+.mat-button-ripple-round {
+    border-radius: 0 !important;
+}

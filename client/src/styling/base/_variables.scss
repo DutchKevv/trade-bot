@@ -1,0 +1,53 @@
+/****** COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR *******/
+$color-background: #f9f7f5;
+
+$color-primary: rgb(38, 114, 179);
+$color-secondary: rgb(133, 195, 87);
+$color-tertiary: rgb(254, 216, 49);
+
+$color-danger: #d76715;
+
+$color-font-light: #fff;
+$color-font-link: #7bbef5;
+$color-font-link-editable: #61a3d8;
+$color-font-link-editable-hover: #337ab7;
+
+$color-border: #e8e8e8;
+$color-box-shadow: rgba(100, 100, 100, 0.2);
+
+$color-table-row-hover: rgba(0, 0, 0, 0.04);
+$color-table-row-active: $color-secondary;
+$color-table-row-active-soft: rgba(133, 195, 87, 0.2);
+$color-table-row-active-font: #fff;
+$color-table-row-disabled: #d8d8d8;
+
+
+/****** FONT FONT FONT FONT FONT FONT FONT FONT FONT FONT FONT FONT*******/
+
+$font-light: NuonMatthew-Light;
+$font-medium: NuonMatthew-Medium;
+$font-regular: NuonMatthew-Regular;
+$font-bold: NuonMatthew-Bold;
+$font-heavy: NuonMatthew-Bold;
+
+// $font-light: VattenfallHall-Light;
+// $font-medium: VattenfallHall-Medium;
+// $font-regular: VattenfallHall-Regular;
+// $font-bold: VattenfallHall-Bold;
+// $font-heavy: VattenfallHall-Heavy;
+
+$font-light-italic: VattenfallHall-LightItalic;
+$font-medium-italic: VattenfallHall-MediumItalic;
+$font-regular-italic: VattenfallHall-RegularItalic;
+$font-bold-italic: VattenfallHall-BoldItalic;
+$font-heavy-italic: VattenfallHall-HeavyItalic;
+
+
+/****** LAYOUT LAYOUT LAYOUT LAYOUT LAYOUT LAYOUT LAYOUT LAYOUT LAYOUT *******/
+
+// spacing
+$spacing: 6px;
+
+// borders
+$border-radius: $spacing;
+$border-color: #e8e8e8;

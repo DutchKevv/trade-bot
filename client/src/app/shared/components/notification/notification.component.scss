@@ -1,0 +1,48 @@
+@import '~src/styling/base/variables';
+
+.notification {
+  display: flex;
+  padding: $spacing * 2 $spacing * 3;
+  border-radius: 0;
+  align-items: center;
+
+  mat-icon {
+    color: white;
+    font-size: 16px;
+    margin-right: $spacing * 4;
+    line-height: 16px;
+    height: auto;
+    // font-weight: bold;
+  }
+
+  p {
+    // color: white;
+    // line-height: 24px;
+    // font-size: 18px;
+  }
+
+  a {
+    margin-left: 100px;
+    color: white;
+  }
+}
+
+.notification-type-success {
+  background-color: #33c333;
+}
+
+.notification-type-error {
+  background-color: red;
+}
+
+.notification-type-warning {
+  background-color: orange;
+}
+
+.notification-type-info {
+  background-color: blue;
+}
+
+.notification-type-unknown {
+  background-color: grey;
+}
