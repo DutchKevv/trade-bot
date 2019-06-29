@@ -1,5 +1,5 @@
 import { IHttpError } from '../../services/http/http.service';
-import { Component, ViewChild, TemplateRef, Output, EventEmitter, OnDestroy, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, TemplateRef, Output, EventEmitter, OnDestroy, AfterViewInit, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 import { AccountService } from 'src/app/lib/services/account/account.service';
 import { Subject, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,14 +15,24 @@ import { VfModalService, VfModalRef } from '@vf/angular';
 export class LoginComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('dialog', { read: TemplateRef, static: true }) dialogTmpl: TemplateRef<any>;
+  @ViewChild('modalHeader', { static: true }) public modalHeaderRef: ElementRef;
   @ViewChild('modalFooter', { read: TemplateRef, static: true }) footerTmpl: TemplateRef<any>;
 
   @Output() error$: Subject<string> = new Subject();
   @Output() busy$: EventEmitter<boolean> = new EventEmitter();
 
-  public form: FormGroup = this._formBuilder.group({
+  public activeForm = 'login';
+
+  public loginForm: FormGroup = this._formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
+  });
+
+  public createAccountForm: FormGroup = this._formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    confirmPassword: ['', [Validators.required]],
+    username: ['', Validators.required]
   });
 
   private _dialogRef: VfModalRef<LoginComponent>;
@@ -39,14 +49,14 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     this._dialogRef = this._modalService.open({
       template: this.dialogTmpl,
       footerTemplate: this.footerTmpl,
+      // headerTemplate: this.modalHeaderRef,
       width: '500px',
-      title: 'Login',
       hasBackdrop: false
     });
 
     this._queryParamsSub = this._activatedRoute.queryParams.subscribe((queryParams: Params) => {
       if (queryParams.accountId) {
-        this.form.controls.AccountId.setValue(queryParams.accountId);
+        this.loginForm.controls.AccountId.setValue(queryParams.accountId);
         this.login();
       }
     });
@@ -63,19 +73,33 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
   }
 
   public login(): void {
-    this.form.disable();
+    this.loginForm.disable();
 
     this.busy$.next(true);
     this.error$.next(null);
 
-    this.accountService.loadAndSet(this.form.value.email, this.form.value.password).subscribe(() => {
+    this.accountService.loadAndSet(this.loginForm.value.email, this.loginForm.value.password).subscribe(() => {
       if (this._dialogRef) {
         this._dialogRef.close();
       }
     }, (error: IHttpError) => {
-      this.form.enable();
+      this.loginForm.enable();
       this.busy$.next(false);
       this.error$.next(error.message);
     });
+  }
+
+  public createAccount() {
+    const registerValues = this.createAccountForm.getRawValue();
+
+    this.accountService.create(registerValues).subscribe((user: any) => {
+      console.log(user);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  public showSignUp() {
+
   }
 }

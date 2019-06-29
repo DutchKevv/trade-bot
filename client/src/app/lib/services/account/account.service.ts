@@ -11,6 +11,13 @@ export interface IAccountModel {
   username?: string;
 }
 
+export interface ICreateAccountModel {
+  mail: string;
+  password: string;
+  confirmPassword: string;
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +26,10 @@ export class AccountService {
   public static readonly SAP_ACCOUNT_ID_LENGTH: number = 10;
 
   public busy$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public account$: BehaviorSubject<IAccountModel> = new BehaviorSubject(null);
+  public account$: BehaviorSubject<IAccountModel> = new BehaviorSubject({
+    _id: '5d16bc3e174ff75102db651f',
+    username: 'DutchKevv'
+  });
 
   constructor(
     private _httpClient: HttpClient,
@@ -41,7 +51,13 @@ export class AccountService {
   public get(email: string, password: string): Observable<IAccountModel> {
     const url = `/login`;
 
-    return this._httpClient.post(url, { data: { email, password } }).pipe(map((data: any) => data.d));
+    return this._httpClient.post(url, { data: { email, password } }).pipe(map((data: any) => data));
+  }
+
+  public create(createAccountModel: ICreateAccountModel) {
+    const url = `/register`;
+
+    return this._httpClient.post(url, createAccountModel).pipe(map((response: any) => response));
   }
 
   public update(model: IAccountModel, showSuccessNotification: boolean = true, showErrorNotification: boolean = true): Observable<IAccountModel> {

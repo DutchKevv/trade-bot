@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <mat-form-field>
+      <input #input matInput type="text" formControlName=name autofocus required placeholder="Name">
+    </mat-form-field>
+  </form>
+
+  <ng-template #modalFooter>
+    <mat-error *ngIf="error$ | async as error">
+      <mat-icon>error_outline</mat-icon>{{error}}
+    </mat-error>
+    <button mat-button mat-dialog-close [disabled]="busy$ | async">Annuleren</button>
+    <button mat-button mat-raised-button color="primary" (click)="save()"
+      [disabled]="(busy$ | async) || (form && !form.valid)">
+      <mat-spinner *ngIf="busy$ | async" [diameter]=20></mat-spinner>Add
+    </button>
+  </ng-template>

@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input } from '
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { of, Subscription } from 'rxjs';
 import { EditorService } from 'src/app/shared/services/editor/editor.service';
+import { VfModalService } from '@vf/angular';
+import { AddWorkspaceModalComponent } from './modals/add-workspace-modal/add-workspace-modal.component';
 
 declare const window: any;
 declare const monaco: any;
@@ -57,6 +59,7 @@ export class CodeEditorTabComponent implements OnInit, AfterViewInit {
   @ViewChild('editor', { static: false }) editorContent: ElementRef;
 
   constructor(
+    private _modalService: VfModalService,
     private _editorService: EditorService
   ) { }
 
@@ -83,6 +86,12 @@ export class CodeEditorTabComponent implements OnInit, AfterViewInit {
       }, (error) => {
         console.error(error);
       });
+    });
+  }
+
+  public addWorkspace(): void {
+    const modal = this._modalService.open({
+      component: AddWorkspaceModalComponent
     });
   }
 

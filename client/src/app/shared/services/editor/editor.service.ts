@@ -24,8 +24,11 @@ export class EditorService {
   ) { }
 
   public save(workspaceId: string, directory: any[]): Observable<any> {
-    console.log(directory);
     return this._httpClient.put(`editor/${workspaceId}`, { workspace: directory }).pipe(map((result: any) => result));
+  }
+
+  public createWorkspace(name: string): Observable<any> {
+    return this._httpClient.post(`editor`, { name }).pipe(map((result: any) => result));
   }
 
   public backtest(projectId: string): Observable<any> {

@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    environment:
+      MONGO_DATA_DIR: /server-mongo/data
+      MONGO_LOG_DIR: /dev/null
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    command: mongod --auth
+    volumes:
+      - /server-mongo/data:/data/db

@@ -1,20 +1,49 @@
+<ng-template #modalHeader>
+  <div class="modalHeader" fxFlexLayout=row #modalHeaderInner fxLayoutGap="32px" fxLayoutAlign="space-between">
+    <h2 fxFlex="50%" class="mat-dialog-title" mat-dialog-title>{{activeForm === 'login' ? 'Login' : 'Register'}}</h2>
+  </div>
+</ng-template>
+
 <ng-template #dialog>
-  <form id="loginForm" (submit)="login()" [formGroup]=form data-test="account">
-    <p class="mat-caption"></p>
+  <!-- login -->
+  <form (submit)="login()" [formGroup]=loginForm *ngIf="activeForm === 'login'">
     <mat-form-field>
-      <input #input matInput type="email" formControlName=email autofocus
-        required placeholder="Email">
+      <input #input matInput type="email" formControlName=email autofocus required placeholder="Email">
     </mat-form-field>
     <mat-form-field>
-      <input #input matInput type="password" formControlName=password
-        required placeholder="Password">
+      <input #input matInput type="password" formControlName=password required placeholder="Password">
+    </mat-form-field>
+  </form>
+
+  <!-- register -->
+  <form (submit)="createAccount()" [formGroup]="createAccountForm" *ngIf="activeForm === 'createAccount'">
+    <mat-form-field>
+      <input #input matInput type="text" formControlName=username autofocus required placeholder="Username">
+    </mat-form-field>
+    <mat-form-field>
+      <input #input matInput type="email" formControlName=email autofocus required placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input #input matInput type="password" formControlName=password required placeholder="Password">
+    </mat-form-field>
+    <mat-form-field>
+      <input #input matInput type="password" formControlName=confirmPassword required placeholder="Confirm password">
     </mat-form-field>
   </form>
 </ng-template>
 
 <ng-template #modalFooter>
-  <mat-error *ngIf="error$ | async as error"><mat-icon>error_outline</mat-icon>{{error}}</mat-error>
-  <button mat-button mat-raised-button color="primary" [disabled]="(busy$ | async) || !form.valid" type="submit" form="loginForm" (click)="login()">
-    <mat-spinner *ngIf="busy$ | async" [diameter]=20></mat-spinner>Inloggen
+  <mat-error *ngIf="error$ | async as error">
+    <mat-icon>error_outline</mat-icon>{{error}}
+  </mat-error>
+  <button *ngIf="activeForm === 'login'" mat-button color="primary" (click)="activeForm = 'createAccount'">Register
+  </button>
+  <button *ngIf="activeForm === 'login'" mat-button mat-raised-button color="primary"
+    [disabled]="(busy$ | async) || !loginForm.valid" (click)="login()">
+    <mat-spinner *ngIf="busy$ | async" [diameter]=20></mat-spinner>Login
+  </button>
+  <button *ngIf="activeForm === 'createAccount'" mat-button [disabled]="(busy$ | async) || !createAccountForm.valid"
+    (click)="createAccount()" mat-raised-button color="primary">
+    <mat-spinner *ngIf="busy$ | async" [diameter]=20></mat-spinner>Register
   </button>
 </ng-template>

@@ -12,12 +12,12 @@ const routes: Routes = [
   },
   {
     path: 'backtest',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: BacktestTabComponent
   },
   {
     path: 'editor',
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: CodeEditorTabComponent
   },
   { path: '**', redirectTo: 'editor', pathMatch: 'full' }

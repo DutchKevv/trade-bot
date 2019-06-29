@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+      
+  mongo:
+    tty: true
+    ports:
+      - 27017:27017
