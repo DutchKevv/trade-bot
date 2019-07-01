@@ -51,7 +51,7 @@ export class AccountService {
   public get(email: string, password: string): Observable<IAccountModel> {
     const url = `/login`;
 
-    return this._httpClient.post(url, { data: { email, password } }).pipe(map((data: any) => data));
+    return this._httpClient.post(url, { email, password }).pipe(map((data: any) => data));
   }
 
   public create(createAccountModel: ICreateAccountModel) {
@@ -127,7 +127,7 @@ export class AccountService {
 
         if (preserveQueryParams) {
           if (currentUrl.startsWith('/') || currentUrl.startsWith('/login')) {
-            currentUrl = '/dashboard';
+            currentUrl = '/editor';
           }
 
           this._router.navigate([currentUrl], {

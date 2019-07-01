@@ -21,11 +21,11 @@ export class AuthGuard implements CanActivate {
         .toPromise();
     }
 
-    this._router.navigate(['/login'], {
-      // queryParams: {
-      //   return: state.url
-      // }
-    });
+    // this._router.navigate(['/login'], {
+    //   // queryParams: {
+    //   //   return: state.url
+    //   // }
+    // });
     return false;
 
     return !!(accountModel && accountModel._id);

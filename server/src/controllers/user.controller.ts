@@ -18,6 +18,7 @@ const router = Router();
  * login
  */
 router.get('/', async (req: any, res, next) => {
+  console.log(req.body, req.params);
   check("email", "Email is not valid").isEmail();
   check("password", "Password cannot be blank").isLength({ min: 1 });
   sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -50,6 +51,7 @@ router.get('/', async (req: any, res, next) => {
  * Sign in using email and password.
  */
 router.post('/', async (req: any, res, next) => {
+  console.log(req.body)
   check("email", "Email is not valid").isEmail();
   check("password", "Password cannot be blank").isLength({min: 1});
   sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -63,17 +65,24 @@ router.post('/', async (req: any, res, next) => {
   }
 
   passport.authenticate("local", (err: Error, user: UserDocument, info: IVerifyOptions) => {
-    if (err) { return next(err); }
+    if (err) { 
+      return next(err); 
+    }
     if (!user) {
+      console.log('NO USER!')
       console.error(err)
       // req.flash("errors", {msg: info.message});
       // return res.redirect("/login");
     }
     req.logIn(user, (err) => {
-      if (err) { return next(err); }
+      if (err) { 
+        console.log('Login Failed')
+        return next(err); 
+      }
+
       // console.error(errors);
       // req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/");
+      res.send(user);
     });
   })(req, res, next);
 });

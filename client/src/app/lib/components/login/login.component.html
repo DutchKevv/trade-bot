@@ -36,7 +36,8 @@
   <mat-error *ngIf="error$ | async as error">
     <mat-icon>error_outline</mat-icon>{{error}}
   </mat-error>
-  <button *ngIf="activeForm === 'login'" mat-button color="primary" (click)="activeForm = 'createAccount'">Register
+  <button *ngIf="activeForm === 'login'" mat-button color="primary" (click)="activeForm = 'createAccount'">Register</button>
+  <button *ngIf="activeForm === 'createAccount'" mat-button color="primary" (click)="activeForm = 'login'">Login
   </button>
   <button *ngIf="activeForm === 'login'" mat-button mat-raised-button color="primary"
     [disabled]="(busy$ | async) || !loginForm.valid" (click)="login()">

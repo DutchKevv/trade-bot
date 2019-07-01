@@ -19,6 +19,8 @@ export interface IFileTab {
   content?: string;
 }
 
+let isMonacoLoaded: boolean = false;
+
 @Component({
   selector: 'app-code-editor-tab',
   templateUrl: './code-editor-tab.component.html',
@@ -102,28 +104,31 @@ export class CodeEditorTabComponent implements OnInit, AfterViewInit {
   }
 
   private _initMonaco() {
-    const loaderScript = document.createElement('script');
-    loaderScript.type = 'text/javascript';
-    loaderScript.src = 'vs/loader.js';
-    loaderScript.addEventListener('load', () => {
+    if (!isMonacoLoaded) {
+      isMonacoLoaded = true;
 
-      (window).require(['vs/editor/editor.main'], () => {
-        const myDiv: HTMLDivElement = this.editorContent.nativeElement;
+      const loaderScript = document.createElement('script');
+      loaderScript.type = 'text/javascript';
+      loaderScript.src = 'vs/loader.js';
+      loaderScript.addEventListener('load', () => this._onLoadScripts(), { once: true });
 
-        this.editor = monaco.editor.create(myDiv, {
-          value: [
-            'function x() {',
-            '\tconsole.log(\'Hello world!\');',
-            '}'
-          ].join('\n'),
-          language: 'typescript',
-          theme: 'vs-dark'
-        });
+      document.body.appendChild(loaderScript);
+    } else {
+      this._onLoadScripts();
+    }
+  }
 
+  private _onLoadScripts() {
+    (window).require(['vs/editor/editor.main'], () => {
+      const myDiv: HTMLDivElement = this.editorContent.nativeElement;
+
+      this.editor = monaco.editor.create(myDiv, {
+        value: DEFAULT_FILE_VALUE,
+        language: 'typescript',
+        theme: 'vs-dark'
       });
-    }, { once: true });
 
-    document.body.appendChild(loaderScript);
+    });
   }
 
   private _getTabContents(): IFileTab[] {
@@ -135,3 +140,19 @@ export class CodeEditorTabComponent implements OnInit, AfterViewInit {
     });
   }
 }
+
+const DEFAULT_FILE_VALUE =
+  `
+import * as Bot from 'bot';
+
+class MABot extends Bot {
+
+	constructor() {
+		super();
+	}
+
+	public onTick(time: Date, price: number): void {
+
+	}
+}
+`;
